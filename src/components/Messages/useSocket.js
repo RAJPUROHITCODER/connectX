@@ -2,7 +2,7 @@ import { useContext, useEffect, useRef } from "react"
 import { io } from "socket.io-client"
 import { AuthContext } from "../../AuthContext"
 
-const SOCKET_URL="http://localhost:8000"
+const SOCKET_URL=import.meta.env.VITE_API_URL
 export const useSocket=()=>{
     const socketRef=useRef()
     const {user,setUser}=useContext(AuthContext)
@@ -21,4 +21,5 @@ export const useSocket=()=>{
     },[user])
 
     return {socketRef}
+
 }
