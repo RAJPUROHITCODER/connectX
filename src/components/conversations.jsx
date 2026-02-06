@@ -19,7 +19,7 @@ const Conversations = () => {
 
     useEffect(() => {
         async function getChatList(params) {
-            const res = await fetch(`${import.meta.env.VITE_API_URL}/conversation`,
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/conversations`,
                 {
                     credentials: "include"
                 }
@@ -131,4 +131,5 @@ const Conversations = () => {
     )
 }
 export default Conversations
+
 
