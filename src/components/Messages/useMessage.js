@@ -38,14 +38,14 @@ export const useMessage = (conversation, setConversation, mode, updateChatList) 
 
     useEffect(() => {
         async function getMessages(params) {
-            const res = await fetch(`http://localhost:8000/message/${conversation?.email}`, {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/message/${conversation?.email}`, {
                 credentials: "include"
             })
             const result = await res.json()
             setMessages(result.messages)
         }
         getMessages()
-    }, [conversation?.email])
+    }, [])
 
     function sendFile(e) {
         const fileArray = e.target.files
@@ -63,13 +63,13 @@ export const useMessage = (conversation, setConversation, mode, updateChatList) 
         if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(conversation.email)) return
         let result;
         if(mode == "newUser"){
-            const res =await fetch(`http://localhost:8000/user/by-email/?email=${conversation.email}`)
+            const res =await fetch(`${import.meta.env.VITE_API_URL}/user/by-email/?email=${conversation.email}`)
             if(!res.ok){
                 return 
             }
         }
         if (type == "text" && inputMessage) {
-            const res = await fetch(`http://localhost:8000/message/${conversation.email}`, {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/message/${conversation.email}`, {
                 method: "POST",
                 credentials: "include",
                 headers: { "Content-Type": "application/json" },
@@ -103,7 +103,7 @@ export const useMessage = (conversation, setConversation, mode, updateChatList) 
                         type: x.type.startsWith("image/") ? "image" : x.type.startsWith("video/") ? "video" : x.type == "application/pdf" ? "pdf" : "text",
                     })
                 })
-                const res = await fetch(`http://localhost:8000/message/${conversation.email}`,
+                const res = await fetch(`${import.meta.env.VITE_API_URL}/message/${conversation.email}`,
                     {
                         method: "POST",
                         credentials: "include",
@@ -163,7 +163,7 @@ export const useMessage = (conversation, setConversation, mode, updateChatList) 
     }
 
     async function del() {
-        const res = await fetch(`http://localhost:8000/message/`, {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/message/`, {
             method: "DELETE",
             credentials: "include",
             headers: { "Content-Type": "application/json" },
@@ -186,7 +186,7 @@ export const useMessage = (conversation, setConversation, mode, updateChatList) 
                 lastMessage: setLastMessage.lastMessage
             }))
 
-            const res = await fetch(`http://localhost:8000/conversations/${conversation.chatId}`, {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/conversations/${conversation.chatId}`, {
                 method: "PATCH",
                 headers: { "Content-Type": "application/json" },
                 credentials: "include",
