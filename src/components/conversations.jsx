@@ -64,7 +64,6 @@ const Conversations = () => {
 
     useEffect(() => {
         socketRef.current.on("receivedMessage", ({ to, from, message, createdAt, conversationId }) => {
-            console.log({ to, from, message, createdAt, conversationId })
             updateChatList(conversationId, message, createdAt, from, to)
         })
     }, [])
@@ -131,5 +130,6 @@ const Conversations = () => {
     )
 }
 export default Conversations
+
 
 
