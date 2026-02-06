@@ -1,0 +1,16 @@
+@import "tailwindcss";
+#root {
+  max-width: 1280px;
+  /* margin: 0 auto; */
+  /* padding: 1rem; */
+  /* text-align: center; */
+}
+
+.custom-scrollbar{
+  scrollbar-width:thin;
+  scrollbar-color:rgba(200, 199, 199,0.2) transparent; 
+}
+.scrollbar-hide::-webkit-scrollbar{
+  display: none;
+}
+
